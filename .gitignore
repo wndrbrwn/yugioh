@@ -2,6 +2,7 @@ res
 .deps
 .states
 artifacts
+.env
 
 # Logs
 logs
