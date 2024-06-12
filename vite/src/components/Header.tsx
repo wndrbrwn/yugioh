@@ -75,7 +75,7 @@ const Header: FC<HeaderProps> = ({ signer, setSigner }) => {
             </MenuList>
           </Menu>
         ) : (
-          <Button colorScheme="gray" onClick={() => useMetamask(setSigner)}>
+          <Button colorScheme="purple" onClick={() => useMetamask(setSigner)}>
             🦊 Log In
           </Button>
         )}
