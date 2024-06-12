@@ -7,8 +7,8 @@ import "./index.css";
 
 const theme = extendTheme({
   fonts: {
-    heading: "yeongdeok-sea",
-    body: "yeongdeok-sea",
+    heading: "yugioh",
+    body: "yugioh",
   },
 });
 

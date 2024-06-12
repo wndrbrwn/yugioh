@@ -11,7 +11,7 @@ import { JsonRpcSigner } from "ethers";
 import { Dispatch, FC, SetStateAction } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMetamask } from "../lib";
-
+import Logo from "/images/Logo.png";
 interface HeaderProps {
   signer: JsonRpcSigner | null;
   setSigner: Dispatch<SetStateAction<JsonRpcSigner | null>>;
@@ -40,16 +40,16 @@ const Header: FC<HeaderProps> = ({ signer, setSigner }) => {
   };
 
   return (
-    <Flex h={20} justifyContent="space-between" alignItems="center" px={4}>
-      <Flex w={40} fontSize={20} fontWeight="semibold">
-        🐢 Save the SEA
+    <Flex h={20} justifyContent="space-between" alignItems="center" px={4} backgroundColor="black">
+      <Flex w={125} >
+      <img className="w-[108px]" src={Logo} alt="YUGIOH" />
       </Flex>
       <Flex display={["none", "none", "flex"]} gap={8}>
         {navLinks.map((v, i) => (
           <Button
             key={i}
             variant="link"
-            colorScheme="blue"
+            colorScheme="gray"
             onClick={() => navigate(v.path)}
           >
             {v.name}
@@ -60,26 +60,26 @@ const Header: FC<HeaderProps> = ({ signer, setSigner }) => {
         {signer ? (
           <Menu>
             <MenuButton
-              colorScheme="blue"
+              colorScheme="gray"
               as={Button}
               rightIcon={<ChevronDownIcon />}
             >
               {signer.address.substring(0, 7)}...
             </MenuButton>
             <MenuList>
-              <MenuItem onClick={onClickLogOut}>로그아웃</MenuItem>
+              <MenuItem onClick={onClickLogOut}>Log out</MenuItem>
             </MenuList>
           </Menu>
         ) : (
-          <Button colorScheme="blue" onClick={() => useMetamask(setSigner)}>
-            🦊 로그인
+          <Button colorScheme="gray" onClick={() => useMetamask(setSigner)}>
+            🦊 Log In
           </Button>
         )}
       </Flex>
       <Flex display={["flex", "flex", "none"]}>
         <Menu>
           <MenuButton
-            colorScheme="blue"
+            colorScheme="gray"
             as={Button}
             rightIcon={<ChevronDownIcon />}
           >
@@ -88,7 +88,7 @@ const Header: FC<HeaderProps> = ({ signer, setSigner }) => {
           <MenuList>
             {!signer && (
               <MenuItem onClick={() => useMetamask(setSigner)}>
-                🦊 로그인
+                🦊 Log In
               </MenuItem>
             )}
             {navLinks.map((v, i) => (
@@ -96,7 +96,7 @@ const Header: FC<HeaderProps> = ({ signer, setSigner }) => {
                 {v.name}
               </MenuItem>
             ))}
-            {signer && <MenuItem onClick={onClickLogOut}>로그아웃</MenuItem>}
+            {signer && <MenuItem onClick={onClickLogOut}>Log Out</MenuItem>}
           </MenuList>
         </Menu>
       </Flex>
