@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Box, GridItem, Image, Text } from "@chakra-ui/react";
 import { FC, useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { OutletContext } from "./Layout";
@@ -36,9 +36,32 @@ const NftCard: FC<NftCardProps> = ({ tokenId, amount }) => {
     getNftMetadata();
   }, [mintContract, tokenId]);
 
-  useEffect(() => console.log(stsNftMetadata), [stsNftMetadata]);
-
-  return <Flex>NftCard</Flex>;
+  return (
+    <GridItem display="flex" flexDir="column">
+      <Box pos="relative" w="fit-content">
+        <Text
+          pos="absolute"
+          top={2}
+          right={4}
+          fontSize={[16, 16, 20]}
+          fontWeight="semibold"
+          backgroundColor="rgba(255,255,255,0.5)"
+          px={[2, 2, 4]}
+          rounded="full"
+        >
+          x{stsNftMetadata?.amount}
+        </Text>
+        <Image
+          src={`/images/puzzle/${stsNftMetadata?.tokenId}.png`}
+          alt={stsNftMetadata?.name}
+        />
+      </Box>
+      <Text fontSize={[20, 20, 28]} fontWeight="semibold">
+        {stsNftMetadata?.name}
+      </Text>
+      <Text fontSize={[18, 18, 24]}>{stsNftMetadata?.description}</Text>
+    </GridItem>
+  );
 };
 
 export default NftCard;
