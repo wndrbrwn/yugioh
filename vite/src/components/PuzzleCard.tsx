@@ -28,3 +28,4 @@ const PuzzleCard: FC<PuzzleCardProps> = ({ index, balance }) => {
 };
 
 export default PuzzleCard;
+
