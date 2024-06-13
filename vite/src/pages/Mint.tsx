@@ -157,14 +157,14 @@ const Mint: FC = () => {
               </NumberInput>
             </Flex>
             <Button
-              colorScheme="blue"
+              colorScheme="purple"
               size={["sm", "sm", "md"]}
               onClick={onClickMintNft}
               isDisabled={isLoading || tokenId === 0 || amount === 0}
               isLoading={isLoading}
-              loadingText="로딩증"
+              loadingText="Loading"
             >
-              민팅하기
+              Mint
             </Button>
               
           </Flex>
