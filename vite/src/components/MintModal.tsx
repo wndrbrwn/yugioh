@@ -24,7 +24,7 @@ const MintModal: FC<MintModalProps> = ({ isOpen, onClose, stsNftMetadata }) => {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>🌊 바다를 구했습니다!</ModalHeader>
+        <ModalHeader>𓊆𓁬𓂀𓂖𓂈𓂾𓁫𓊇</ModalHeader>
         <ModalCloseButton />
         <ModalBody display="flex" flexDir="column" alignItems="center">
           <Box pos="relative">
