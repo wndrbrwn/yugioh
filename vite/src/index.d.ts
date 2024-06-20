@@ -12,6 +12,7 @@ interface NftMetadata {
   }[];
 }
 
+
 interface StsNftMetadata extends NftMetadata {
   tokenId: number;
   amount: number;

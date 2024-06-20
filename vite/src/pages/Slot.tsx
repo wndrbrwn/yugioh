@@ -1,6 +1,9 @@
 import { Box, Button, Flex, Image as ImageComponent } from "@chakra-ui/react";
 import { FC, SetStateAction, useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { Contract, ethers } from "ethers";
+import mintNftAbi from "./mintNftAbi.json";
+import { JsonRpcSigner } from "ethers";
 interface Data {
   image: string;
   percent: number;
@@ -71,13 +74,27 @@ const getRandomList = (dataList: Data[]) => {
 };
 
 const Slot: FC = () => {
+  const [signer, setSigner] = useState<JsonRpcSigner | null>(null);
+  const [contract, setContract] = useState<Contract | null>(null);
+  const onClickMetamask = async () => {
+    try {
+      if (!window.ethereum) return;
+
+      const provider = new ethers.BrowserProvider(window.ethereum);
+
+      setSigner(await provider.getSigner());
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const [skinRandomList, setSkinRandomList] = useState<Data[]>(skinDataList);
   const [faceRandomList, setFaceRandomList] = useState<Data[]>(faceDataList);
   const [hairRandomList, setHairRandomList] = useState<Data[]>(hairDataList);
   const [selectedFace, setSelectedFace] = useState("face-1");
   const [selectedSkin, setSelectedSkin] = useState("skin-1");
   const [selectedHair, setSelectedHair] = useState("hair-1");
-
+  
   const [isLoop, setIsLoop] = useState<boolean>(false);
   // const [isStop, setIsStop] = useState<boolean>(false);
   const canvasRef = useRef<any>(null);
@@ -167,23 +184,65 @@ const Slot: FC = () => {
     }
   };
 
+  
+
+  const uploadMetadata = async (image: string, fileName: string) => {
+    try {
+      const metadata = JSON.stringify({
+        pinataContent: {
+          name: fileName,
+          description: "Card",
+          image,
+        },
+        pinataMetadata: {
+          name: fileName,
+        },
+      });
+
+      const response = await axios.post(
+        "https://api.pinata.cloud/pinning/pinJSONToIPFS",
+        metadata,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            pinata_api_key: import.meta.env.VITE_PINATA_KEY,
+            pinata_secret_api_key: import.meta.env.VITE_PINATA_SECRET,
+          },
+        }
+      );
+
+      return `https://gray-impressed-roundworm-703.mypinata.cloud/ipfs/${response.data.IpfsHash}`;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const saveImage = async() => {
+    
     const canvas = canvasRef.current;
     const dataURL = canvas?.toDataURL('image/png');
     const blob = dataURLToBlob(dataURL);
   const file = new File([blob], 'canvas-image.png', { type: 'image/png' });
+  const fileName = file.name;
   const formData = new FormData();
 
   formData.append("file", file);
+  const imageUrl = await uploadImage(formData);
+  const metadataUrl = await uploadMetadata(imageUrl!, fileName);
 
-   await uploadImage(formData);
+  const tx = await contract?.mintNft(metadataUrl);
+
+  await tx.wait();
+
+  console.log(tx);
+ 
+}
 
     // const link = document.createElement('a');
     // link.href = dataURL;
     // link.download = 'canvas-image.png';
     // link.click();
-  };
+  
 
   useEffect(() => {
     getAllRandom();
@@ -208,11 +267,23 @@ const Slot: FC = () => {
     setSelectedHair(hairList[hairIndex]);
   };
 
+  useEffect(() => {
+    if (!signer) return;
+
+    setContract(
+      new Contract(
+        "0x2049466b67A792C2BcC9c5D059F198E6778C0C49",
+        mintNftAbi,
+        signer
+      )
+    );
+  }, [signer]);
 
 
   return (
     <Flex flexDir={"column"} px={4} w="100%">
-      
+      {signer ? (
+        <>
       <Flex flexDir={"row"} p={"12px"} gap="4" bg="yellow.100" w="100%" h={300}>
         <Box minW={200} w={200} overflow={"hidden"}>
           <Flex
@@ -283,6 +354,8 @@ const Slot: FC = () => {
         justifyContent={"center"}
       >
 
+
+  
         <Box bg="green.100" w="400px" h="550px">
             
           <canvas ref={canvasRef} id="canvas-1" width={"400px"} height={"550px"}></canvas>
@@ -292,6 +365,10 @@ const Slot: FC = () => {
           <Button onClick={onClickSlot} w="100%">Retry</Button>
         </Flex>
       </Flex>
+      </>
+      ) : (
+        <Button onClick={onClickMetamask}>🦊Login and Mint</Button>
+      )}
     </Flex>
   );
 };
