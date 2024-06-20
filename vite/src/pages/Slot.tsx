@@ -21,17 +21,17 @@ const prepareCanvas = ({ skin, face, hair }: PrepareCanvasArgs) => {
   const canvasContext = canvas1.getContext("2d");
   canvasContext?.clearRect(0, 0, 400, 600);
   const img3 = new Image();
-  img3.src = "/src/assets/layer/" + skin + ".png";
+  img3.src = "/images/layer/" + skin + ".png";
   img3.onload = () => {
     canvasContext?.drawImage(img3, 0, 0, 400, 550);
 
     const img1 = new Image();
-    img1.src = "/src/assets/layer/" + face + ".png";
+    img1.src = "/images/layer/" + face + ".png";
     img1.onload = () => {
       canvasContext?.drawImage(img1, 0, 0, 400, 550);
     };
     const img2 = new Image();
-    img2.src = "/src/assets/layer/" + hair + ".png";
+    img2.src = "/images/layer/" + hair + ".png";
     img2.onload = () => {
       canvasContext?.drawImage(img2, 0, 0, 400, 550);
     };
@@ -220,35 +220,13 @@ const Slot: FC = () => {
             className={`slot ${isLoop ? "loop" : "stop"}`}
           >
             <ImageComponent
-              src={`/src/assets/layer/${skinRandomList[0].image}.png`}
+              src={`/images/layer/${skinRandomList[0].image}.png`}
             />
             <ImageComponent
-              src={`/src/assets/layer/${skinRandomList[1].image}.png`}
+              src={`/images/layer/${skinRandomList[1].image}.png`}
             />
             <ImageComponent
-              src={`/src/assets/layer/${skinRandomList[2].image}.png`}
-            />
-          </Flex>
-        </Box>
-        <Box minW={200} w={200} overflow={"hidden"}>
-          <Flex
-            flexDir={"column"}
-            className={`slot ${isLoop ? "loop" : "stop"}`}
-          >
-            <ImageComponent
-              src={`/src/assets/layer/${faceRandomList[0].image}.png`}
-            />
-            <ImageComponent
-              src={`/src/assets/layer/${faceRandomList[1].image}.png`}
-            />
-            <ImageComponent
-              src={`/src/assets/layer/${faceRandomList[2].image}.png`}
-            />
-            <ImageComponent
-              src={`/src/assets/layer/${faceRandomList[3].image}.png`}
-            />
-            <ImageComponent
-              src={`/src/assets/layer/${faceRandomList[4].image}.png`}
+              src={`/images/layer/${skinRandomList[2].image}.png`}
             />
           </Flex>
         </Box>
@@ -258,16 +236,38 @@ const Slot: FC = () => {
             className={`slot ${isLoop ? "loop" : "stop"}`}
           >
             <ImageComponent
-              src={`/src/assets/layer/${hairRandomList[0].image}.png`}
+              src={`/images/layer/${faceRandomList[0].image}.png`}
             />
             <ImageComponent
-              src={`/src/assets/layer/${hairRandomList[1].image}.png`}
+              src={`/images/layer/${faceRandomList[1].image}.png`}
             />
             <ImageComponent
-              src={`/src/assets/layer/${hairRandomList[2].image}.png`}
+              src={`/images/layer/${faceRandomList[2].image}.png`}
             />
             <ImageComponent
-              src={`/src/assets/layer/${hairRandomList[3].image}.png`}
+              src={`/images/layer/${faceRandomList[3].image}.png`}
+            />
+            <ImageComponent
+              src={`/images/layer/${faceRandomList[4].image}.png`}
+            />
+          </Flex>
+        </Box>
+        <Box minW={200} w={200} overflow={"hidden"}>
+          <Flex
+            flexDir={"column"}
+            className={`slot ${isLoop ? "loop" : "stop"}`}
+          >
+            <ImageComponent
+              src={`/images/layer/${hairRandomList[0].image}.png`}
+            />
+            <ImageComponent
+              src={`/images/layer/${hairRandomList[1].image}.png`}
+            />
+            <ImageComponent
+              src={`/images/layer/${hairRandomList[2].image}.png`}
+            />
+            <ImageComponent
+              src={`/images/layer/${hairRandomList[3].image}.png`}
             />
           </Flex>
         </Box>
