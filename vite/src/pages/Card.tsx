@@ -4,7 +4,7 @@ import { useOutletContext } from "react-router-dom";
 import { OutletContext } from "../components/Layout";
 import NftCard from "../components/NftCard";
 
-const My: FC = () => {
+const Card: FC = () => {
   const [mintedList, setMintedList] = useState<number[]>([]);
 
   const { signer, mintContract } = useOutletContext<OutletContext>();
@@ -42,4 +42,4 @@ const My: FC = () => {
   );
 };
 
-export default My;
+export default Card;

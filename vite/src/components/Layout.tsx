@@ -11,6 +11,7 @@ export interface OutletContext {
   signer: JsonRpcSigner | null;
   setSigner: Dispatch<SetStateAction<JsonRpcSigner | null>>;
   mintContract: Contract | null;
+  saleContract: Contract | null;
 }
 
 const Layout: FC = () => {

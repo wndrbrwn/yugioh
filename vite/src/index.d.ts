@@ -15,4 +15,10 @@ interface NftMetadata {
 interface StsNftMetadata extends NftMetadata {
   tokenId: number;
   amount: number;
+  
+}
+
+interface SaleNftMetadata extends NftMetadata {
+  price: bigint;
+  tokenOwner: string;
 }

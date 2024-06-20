@@ -21,7 +21,7 @@ const PuzzleCard: FC<PuzzleCardProps> = ({ index, balance }) => {
       )}
       <Image
         src={`/images/puzzle/${index + 1}.png`}
-        alt={`Save the SEA #${index + 1}`}
+        alt={`Exodia the Forbidden One #${index + 1}`}
       />
     </GridItem>
   );

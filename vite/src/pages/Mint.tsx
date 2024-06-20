@@ -1,7 +1,9 @@
 import {
-  
+  Box,
   Button,
+  Center,
   Flex,
+  Image,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -45,6 +47,7 @@ const Mint: FC = () => {
         ...axiosResponse.data,
         tokenId,
         amount,
+        
       });
 
       onOpen();
@@ -111,14 +114,17 @@ const Mint: FC = () => {
 ⠀⠀⠀⠀⠀⠈⠻⠶⠿⢿⣿⡷⢾⣿⠟⠛⠒⠞⠀⣸⡟⠀⠀⠀⠀⠸⣧⡀⠀⠈⣇⠀⠋⠀⠓⡈⠀⣾⠟⠣⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⠛⠻⠷⠶⠶⠤⢨⣿⡦⣄⢘⣇⠈⢛⠛⢃⣼⡟⠀⣠⢽⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</Flex>
         
-
+<Box bgColor={"white"}>
         <Text fontSize={[24, 24, 36]} fontWeight="semibold" mb={8}  >
         ✡ Exodia is Sealed! ✡
         </Text>
+        </Box>
         {signer ? (
            
           <Flex alignItems="end" gap={[4, 4, 8]} mx={4} mb={16}>
+            <Box bgColor={"white"}>
             <Flex flexDir="column" gap={[2, 2, 4]}>
+              
               <Text fontSize={[12, 12, 16]} fontWeight="semibold" >
                 Exodia's body part
               </Text>
@@ -155,7 +161,9 @@ const Mint: FC = () => {
                   <NumberDecrementStepper />
                 </NumberInputStepper>
               </NumberInput>
+              
             </Flex>
+            </Box>
             <Button
               colorScheme="purple"
               size={["sm", "sm", "md"]}
@@ -171,9 +179,11 @@ const Mint: FC = () => {
           
                 ) : (
           <Flex flexDir="column" gap={[4, 4, 8]} alignItems="center">
+            <Box bgColor={"white"}>
             <Text fontSize={[20, 20, 16]}>
             石版に封印されし聖五体を解き放ち、守護の力を与えよ！出でよ、我がいにしえの精霊、エクゾディア！
             </Text>
+            </Box>
             <Button
             
               colorScheme="purple"
@@ -182,6 +192,7 @@ const Mint: FC = () => {
             >
               🦊 Log In
             </Button>
+            
           </Flex>
         )}
       </Flex>

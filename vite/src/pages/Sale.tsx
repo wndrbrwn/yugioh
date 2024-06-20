@@ -60,7 +60,7 @@ const SaleNft: FC = () => {
 
   return (
     <Flex
-      bgColor="red.100"
+      
       w="100%"
       alignItems="center"
       flexDir="column"
@@ -77,21 +77,10 @@ const SaleNft: FC = () => {
           ]}
           gap={6}
         >
-          {nftMetadataArray.map((v, i) => (
-            <SaleNftCard
-              key={i}
-              nftMetadata={v}
-              tokenId={tokenIds[i]}
-              mintContract={mintContract}
-              saleContract={saleContract}
-              nftMetadataArray={nftMetadataArray}
-              setNftMetadataArray={setNftMetadataArray}
-              signer={signer}
-            />
-          ))}
+           <text>팔지 못합니다</text>
         </Grid>
       ) : (
-        <Text>🦊 메타마스크 로그인이 필요합니다!</Text>
+        <Text>🦊 You need to log in ! ! !</Text>
       )}
     </Flex>
   );

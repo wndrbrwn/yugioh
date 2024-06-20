@@ -2,3 +2,33 @@
   font-family: "yugioh";
   src: url("../public/fonts/Yu-Gi-Oh! Matrix Book.ttf") format("truetype");
 }
+
+.loop {
+  -webkit-animation: slide 500ms infinite linear;
+  -moz-animation: slide 500ms infinite linear;
+  animation: slide 500ms infinite linear;
+}
+
+.stop {
+  -webkit-animation: stop 500ms ease-in-out forwards;
+  -moz-animation: stop 500ms ease-in-out forwards;
+  animation: stop 500ms ease-in-out forwards;
+}
+
+@-webkit-keyframes slide {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, -900px);
+  }
+}
+
+@-webkit-keyframes stop {
+  0% {
+    transform: translate(0, 0px);
+  }
+  100% {
+    transform: translate(0,-400px);
+  }
+}

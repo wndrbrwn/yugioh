@@ -1,2 +1,2 @@
-export const mintContractAddress = "0x8Ac8e12361563CEd74158c8e2dece9A0C4249C54";
-export const saleContractAddress = "0x97dE64B92C0DDA2b68E3C285a11550A9d8db4a9F";
+export const mintContractAddress = "0xdA46Ce079F8f4CfFdC1F8562C3AE721a5a7B098a";
+export const saleContractAddress = "0xDD3CB5B95BE94c4DC58497AdF105107B81704B6b";

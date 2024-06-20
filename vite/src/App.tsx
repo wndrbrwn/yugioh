@@ -4,6 +4,9 @@ import Home from "./pages/Home";
 import Layout from "./components/Layout";
 import Mint from "./pages/Mint";
 import My from "./pages/My";
+import SaleNft from "./pages/Sale";
+import Slot from "./pages/Slot";
+import Card from "./pages/Card";
 
 const App: FC = () => {
   return (
@@ -13,6 +16,9 @@ const App: FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/mint" element={<Mint />} />
           <Route path="/my" element={<My />} />
+          <Route path="/sale" element={<SaleNft />} />
+          <Route path="/card" element={<Card />} />
+          <Route path="/slot" element={<Slot />} />
         </Route>
       </Routes>
     </BrowserRouter>
