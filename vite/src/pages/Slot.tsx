@@ -161,7 +161,7 @@ const Slot: FC = () => {
         }
       );
 
-      return `https://slime-project.mypinata.cloud/ipfs/${response.data.IpfsHash}`;
+      return `https://gray-impressed-roundworm-703.mypinata.cloud/ipfs/${response.data.IpfsHash}`;
     } catch (error) {
       console.error(error);
     }
@@ -177,7 +177,7 @@ const Slot: FC = () => {
 
   formData.append("file", file);
 
-  const imageUrl = await uploadImage(formData);
+   await uploadImage(formData);
 
     // const link = document.createElement('a');
     // link.href = dataURL;

@@ -1,9 +1,9 @@
 import {
   Box,
   Button,
-  Center,
+  
   Flex,
-  Image,
+  
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
